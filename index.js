@@ -4,8 +4,12 @@ const cors = require('cors');
 const User = require('./UserSchema');
 
 const app = express();
+const bodyParser = require('body-parser');
 app.use(express.json());
 app.use(cors());
+// Parse incoming request bodies in a middleware before your handlers
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Database connection
 mongoose.connect('mongodb+srv://testing:root@testing.hj77rpl.mongodb.net/easyhaionline?retryWrites=true&w=majority', {
